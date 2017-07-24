@@ -167,17 +167,113 @@ public class Library implements BookingSystem {
 	
 	public void save()
 	{
-		ReaderWriter.writeStringToFile(toWrite, "/home/deaglanl/contents.txt", false);
+		String filePath = "/home/deaglanl/contents.txt";
+		/*String os = System.getProperty("os.name", "generic");
+		if(os.indexOf("win") >= 0)
+		{
+			filePath = "C:\\Users\\(User_Name)\\Documents\\contents.txt";
+		}
+		else if (os.indexOf("nux") >= 0)
+		{
+			filePath ="/home/deaglanl/contents.txt";
+		}
+		else 
+		{
+			filePath = "contens.txt";
+		}
+		
+		*/
+		String stringSave = ""; 
+		
+		for(Document d: contents )
+		{
+			stringSave += d.toString(); 
+		}
+		
+		try {
+			Deaglan.writeStringToFile(stringSave, filePath, false);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void load()
 	{
+		
+		String filePath = "/home/deaglanl/contents.txt"; 
+		String loadString = ""; 
+		String curWord = ""; 
+		ArrayList<String> curObject = new ArrayList<String>();
+		/*String os = System.getProperty("os.name", "generic");
+		
+		if(os.indexOf("win") >= 0)
+		{
+			filePath = "C:\\Users\\(User_Name)\\Documents\\contents.txt";
+		}
+		else if (os.indexOf("nux") >= 0)
+		{
+			filePath ="/home/deaglanl/contents.txt";
+		}
+		else 
+		{
+			filePath = "contents.txt";
+		}
+		*/
 	   try {
-		ReaderWriter.readFileToString("/home/deaglanl/contents.txt");
+		loadString = Deaglan.readFileToString(filePath);
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
+		System.out.println(e);
 		e.printStackTrace();
+	}
+		
+		
+
+		if(loadString != null)
+		{
+			char[] input = loadString.toCharArray();
+		   for (int i = 0; i < input.length; i++)
+		   {
+			 if(input[i] != '-' && input[i] != '/')
+			 {
+				 curWord += input[i];
+			 }
+			 else if(input[i] == '-')
+			 {
+				 curObject.add(curWord);
+				 curWord = "";
+			 }
+			 else if(input[i] == '/') 
+			 {
+				 if(curObject.size() == 8)
+				 {
+					 add(curObject.get(0), curObject.get(1), curObject.get(2), curObject.get(3), curObject.get(4), Integer.parseInt(curObject.get(5)), Boolean.parseBoolean(curObject.get(6)), Integer.parseInt(curObject.get(7)));
+					 curObject.clear();
+				 }
+				 else if(curObject.size() == 7)
+				 {
+					 if(Deaglan.intTryParse((curObject.get(5)))) 
+					 {
+						 add(curObject.get(0),curObject.get(1),curObject.get(2),curObject.get(3),curObject.get(4),Integer.parseInt(curObject.get(5)),Integer.parseInt(curObject.get(5)));
+						 curObject.clear();
+					 }
+					 else {
+						 add(curObject.get(0),curObject.get(1),curObject.get(2),curObject.get(3),curObject.get(4),curObject.get(5),curObject.get(5));
+						 curObject.clear();
+					 }
+				 }
+				 else
+				 {
+					 System.out.println("Error: nothing to load"); 
+				 }
+			
+			 }
+		   }
+		}
+		else
+		{
+			System.out.println("Error: nothing to load");
+		}
 	}
 	}
 	
-}

@@ -38,5 +38,9 @@ public class Book extends Document {
 		this.pages = pages;
 	}
 
+	public String toString() {
+		return getId()+"-"+title+"-"+author+"-"+publisher+"-"+publicationDate+"-"+deweyDecimal+"-"+fiction+"-"+pages+"/";
+		}
 
-}
+	}
+

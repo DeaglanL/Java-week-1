@@ -20,4 +20,9 @@ public class JournalArticle extends Document{
 	{
 		this.DOI = d; 
 	}
+	
+	public String toString() {
+		return getId()+"-"+title+"-"+author+"-"+publisher+"-"+publicationDate+"-"+journal+"-"+DOI+"/";
+		}
+
 }

@@ -1,7 +1,7 @@
 package Library;
 
 public abstract class Document {
- private static String id;  
+ String id;  
  String title; 
  String author; 
  String publisher; 
@@ -9,7 +9,7 @@ public abstract class Document {
  
  public Document(String id, String title,String author, String publisher, String publicationDate)
  {
-	 Document.setId(id); 
+	 this.id = id; 
 	 this.title = title; 
 	 this.author = author; 
 	 this.publisher = publisher; 
@@ -17,12 +17,12 @@ public abstract class Document {
 	 
  }
 
-public static String getId() {
-	return id;
+public String getId() {
+	return this.id;
 }
 
-public static void setId(String id) {
-	Document.id = id;
+public void setId(String id) {
+	this.id = id;
 }
 
 public String getTitle() {
@@ -57,5 +57,7 @@ public void setPublicationDate(String publicationDate) {
 	this.publicationDate = publicationDate;
 }
  
+public String toString() {
+	return id+"-"+title+"-"+author+"-"+publisher+"-"+publicationDate;}
 
 }

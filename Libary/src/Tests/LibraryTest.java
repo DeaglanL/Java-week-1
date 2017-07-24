@@ -108,5 +108,19 @@ public class LibraryTest {
 		l.remove(l.search("Deaglan Lynch", "111 manc road"));
 		assertNull(l.search("Deaglan Lynch", "111 manc road"));
 	}
+	
+	@Test
+	public void testSaveLoad()
+	{
+		Library l = new Library(); 
+		l.add("123", "Of Mice and Men", "John Steinbeck", "Covici Friede", "1937",123.123f, true, 187);
+		l.add("32135", "Test driven design in Java", "D Lynch", "Oracle", "2015", "Java Weekly", "dw197jkkbj-32141lol");
+		l.save();
+		l.remove(l.search("123"));
+		l.remove(l.search("32135"));
+		l.load();
+		assertNotNull(l.search("123"));
+		
+	}
 
 }

@@ -21,4 +21,10 @@ public class Dissertation extends Document{
 		this.ISSN = i; 
 	}
 
+	public String toString() {
+		return getId()+"-"+title+"-"+author+"-"+publisher+"-"+publicationDate+"-"+wordCount+"-"+ISSN+"/";
+		}
+
+	
+	
 }
