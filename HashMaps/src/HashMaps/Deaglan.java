@@ -45,4 +45,27 @@ public class Deaglan {
 	      }
 	}
 	
+	//finds all possible combinations of chars in a string 
+    public void findAnagrams(String s, int i)
+    {
+    	char[] c = s.toCharArray(); 
+    
+    	if (i == c.length)
+    	{
+    		System.out.println(new String(c));
+    	}
+    	else
+    	{
+    		for (int j = i; j < c.length; j++)
+    		{
+    			  char curChar = c[i]; 
+    			  c[i] = c[j]; 
+    			  c[j] = curChar; 
+    			  
+    			  findAnagrams(new String(c), i+1);
+    			  
+    		}
+    	}
+    }
+	
 }
